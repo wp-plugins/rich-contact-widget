@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Rich Contact Widget
-Plugin URI: http://URI_Of_Page_Describing_Plugin_and_Updates
+Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
 Version: 0.1
 Author: Rémy Perona
