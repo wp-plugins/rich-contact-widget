@@ -33,7 +33,9 @@ class RC_Widget extends WP_Widget {
 	 */
 	public $widget_keys = array(
 			'title',
+			'type',
 			'name',
+			'activity',
 			'address',
 			'postal_code',
 			'city',
@@ -68,10 +70,20 @@ class RC_Widget extends WP_Widget {
 		echo $before_widget;
 		if ( ! empty( $title ) )
 			echo $before_title . $title . $after_title;
+		if ( $instance['type'] == 'person' ) {
+			$type = 'Person';
+			$activity = 'jobTitle';
+			$org = '';
+		} else {
+			$type = 'Corporation';
+			$activity = 'description';
+			$org = ' org';
+		}
 		?>
-		<ul class="vcard" itemscope itemtype="http://schema.org/Corporation">
+		<ul class="vcard" itemscope itemtype="http://schema.org/<?php echo $type; ?>">
 			<?php if ( !empty( $instance['name'] ) ) ?>
-				<li class="fn org" itemprop='name'><strong><?php echo $instance['name']  ?></strong></li>
+				<li class="fn<?php echo $org; ?>" itemprop='name'><strong><?php echo $instance['name']  ?></strong></li>
+				<li itemprop="<?php echo $activity; ?>"><?php echo $instance['activity'] ?></li>
 			<ul class="adr" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
 				<?php if ( !empty( $instance['address'] ) ) { ?>
 					<li class="street-address" itemprop='streetAddress'><?php echo $instance['address'] ?></li>
@@ -155,8 +167,18 @@ class RC_Widget extends WP_Widget {
 		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Company name :', 'rich-contact-widget' ); ?></label>
+			<?php _e('Type :', 'rich-contact-widget'); ?><br />
+			<input id="<?php echo $this->get_field_id( 'person' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>" type="radio" value="person" <?php echo ( $type == 'person' ) ? 'checked' : ''; ?>  />
+			<label for="<?php echo $this->get_field_id( 'person' ); ?>"><?php _e('Person', 'rich-contact-widget'); ?><br />
+			<input id="<?php echo $this->get_field_id( 'company' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>" type="radio" value="company" <?php echo ( $type == 'company' ) ? 'checked' : ''; ?> />
+			<label for="<?php echo $this->get_field_id( 'company' ); ?>"><?php _e('Company', 'rich-contact-widget'); ?>
+		<p>
+			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Company name/Your name :', 'rich-contact-widget' ); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>" />
+		</p>
+		<p>
+			<label for="<?php echo $this->get_field_id('activity'); ?>"><?php _e('Activity/Job :', 'rich-contact-widget'); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id('activity'); ?>" name="<?php echo $this->get_field_name('activity'); ?>" type="text" value="<?php echo esc_attr( $activity ); ?>" />
 		</p>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'address' ); ?>"><?php _e( 'Company address :', 'rich-contact-widget' ); ?></label>
