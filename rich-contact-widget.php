@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 0.2
+Version: 0.3
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -31,7 +31,7 @@ class RC_Widget extends WP_Widget {
 	/**
 	 * Array containing the keys for each value of the contact fields
 	 */
-	public $widget_keys = array(
+	public $widget_keys = apply_filters( 'rc_widget_keys', array(
 			'title',
 			'type',
 			'name',
@@ -42,7 +42,8 @@ class RC_Widget extends WP_Widget {
 			'country',
 			'phone',
 			'email'
-		);
+		)
+	);
 
 	/**
 	 * Register widget with WordPress.
@@ -79,49 +80,40 @@ class RC_Widget extends WP_Widget {
 			$activity = 'description';
 			$org = ' org';
 		}
-		?>
-		<ul class="vcard" itemscope itemtype="http://schema.org/<?php echo $type; ?>">
-			<?php if ( !empty( $instance['name'] ) ) ?>
-				<li class="fn<?php echo $org; ?>" itemprop='name'><strong><?php echo $instance['name']  ?></strong></li>
-			<?php if ( !empty( $instance['activity'] ) ) ?>
-				<li itemprop="<?php echo $activity; ?>"><?php echo $instance['activity'] ?></li>
-			<ul class="adr" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-				<?php if ( !empty( $instance['address'] ) ) { ?>
-					<li class="street-address" itemprop='streetAddress'><?php echo $instance['address'] ?></li>
-				<?php
+
+		$widget_output = '<ul class="vcard" itemscope itemtype="http://schema.org/'. $type. '">';
+			if ( !empty( $instance['name'] ) )
+				$widget_output .= '<li class="fn ' . $org . '" itemprop="name"><strong>' . $instance['name'] . '</strong></li>';
+			if ( !empty( $instance['activity'] ) )
+				$widget_output .= '<li itemprop="' . $activity . '">' . $instance['activity'] . '</li>';
+			$widget_output .= '<ul class="adr" itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">';
+				if ( !empty( $instance['address'] ) ) {
+					$widget_output .= '<li class="street-address" itemprop="streetAddress">' . $instance['address'] . '</li>';
 					}
-				if ( !empty( $instance['postal_code'] ) || !empty( $instance['city'] ) ) { ?>
-					<li>
-				<?php
-					if ( !empty( $instance['postal_code'] ) ) { ?>
-						<span class="postal-code" itemprop='postalCode'><?php echo  $instance['postal_code'] ?></span>&nbsp;
-				<?php
+				if ( !empty( $instance['postal_code'] ) || !empty( $instance['city'] ) ) {
+					$widget_output.= '<li>';
+					if ( !empty( $instance['postal_code'] ) ) {
+						$widget_output .= '<span class="postal-code" itemprop="postalCode">' . $instance['postal_code'] . '</span>&nbsp;';
 					}
-					if ( !empty( $instance['city'] ) ) { ?>
-						<span class="locality" itemprop='addressLocality'><?php echo $instance['city'] ?></span>
-				<?php	
+					if ( !empty( $instance['city'] ) ) {
+						$widget_output .= '<span class="locality" itemprop="addressLocality">' . $instance['city'] . '</span>';
 					}
-				?>
-					</li>
-				<?php
+					$widget_output .= '</li>';
 				}
-				if ( !empty( $instance['country'] ) ) { ?>
-					<li class="country-name" itemprop='addressCountry'><?php echo $instance['country'] ?></li>
-				<?php
+				if ( !empty( $instance['country'] ) ) {
+					$widget_output .= '<li class="country-name" itemprop="addressCountry">' . $instance['country'] . '</li>';
 				}
-				?>
-			</ul>
-			<?php if ( !empty( $instance['phone'] ) ) { ?>
-				<li class="tel" itemprop='telephone'><a href="tel:<?php echo $instance['phone'] ?>"><?php echo $instance['phone'] ?></a></li>
-			<?php
+			$widget_output .= '</ul>';
+			if ( !empty( $instance['phone'] ) ) {
+				$widget_output .= '<li class="tel" itemprop="telephone"><a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a></li>';
 			}
-			if ( !empty( $instance['email'] ) ) { ?>
-				<li class="email" itemprop='email'><a href="mailto:<?php echo $instance['email'] ?>"><?php echo $instance['email'] ?></a></li>
-			<?php
+			if ( !empty( $instance['email'] ) ) {
+				$widget_output .= '<li class="email" itemprop="email"><a href="mailto:' . $instance['email'] . '">' . $instance['email'] . '</a></li>';
 			}
-			?>
-		</ul>
-		<?php
+
+		$widget_output .= '</ul>';
+		$widget_output = apply_filters( 'rc_widget_output', $widget_output );
+		echo $widget_output;
 		echo $after_widget;
 	}
 
@@ -138,8 +130,8 @@ class RC_Widget extends WP_Widget {
 	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 		foreach ( $this->widget_keys as $key=>$value ) {
-			if ( $old_instance[$value] != $new_instance[$value] || !array_key_exists($value, $instance) ) {
-				$instance[$value] = strip_tags( $new_instance[$value] );
+			if ( $old_instance[ $value ] != $new_instance[ $value ] || !array_key_exists($value, $instance) ) {
+				$instance[ $value ] = strip_tags( $new_instance[$value] );
 			}
 		}
 		return $instance;
@@ -159,53 +151,60 @@ class RC_Widget extends WP_Widget {
 			} elseif ( !array_key_exists( $value, $instance ) ) {
 				${$value} = '';
 			} else {
-				${$value} = $instance[$value];
+				${$value} = $instance[ $value ];
 			}
 		}
-		?>
-		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title :' , 'rich-contact-widget'); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-		</p>
-		<p>
-			<?php _e('Type :', 'rich-contact-widget'); ?><br />
-			<input id="<?php echo $this->get_field_id( 'person' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>" type="radio" value="person" <?php echo ( $type == 'person' ) ? 'checked' : ''; ?>  />
-			<label for="<?php echo $this->get_field_id( 'person' ); ?>"><?php _e('Person', 'rich-contact-widget'); ?><br />
-			<input id="<?php echo $this->get_field_id( 'company' ); ?>" name="<?php echo $this->get_field_name( 'type' ); ?>" type="radio" value="company" <?php echo ( $type == 'company' ) ? 'checked' : ''; ?> />
-			<label for="<?php echo $this->get_field_id( 'company' ); ?>"><?php _e('Company', 'rich-contact-widget'); ?>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'name' ); ?>"><?php _e( 'Company name/Your name :', 'rich-contact-widget' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'name' ); ?>" name="<?php echo $this->get_field_name( 'name' ); ?>" type="text" value="<?php echo esc_attr( $name ); ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id('activity'); ?>"><?php _e('Activity/Job :', 'rich-contact-widget'); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id('activity'); ?>" name="<?php echo $this->get_field_name('activity'); ?>" type="text" value="<?php echo esc_attr( $activity ); ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'address' ); ?>"><?php _e( 'Company address :', 'rich-contact-widget' ); ?></label>
-			<textarea class="widefat" id="<?php echo $this->get_field_id( 'address' ); ?>" name="<?php echo $this->get_field_name( 'address' ); ?>"><?php echo esc_textarea( $address ); ?></textarea>
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'postal_code' ); ?>"><?php _e( 'Postal/ZIP code :', 'rich-contact-widget' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'postal_code' ); ?>" name="<?php echo $this->get_field_name( 'postal_code' ); ?>" type="text" value="<?php echo esc_attr( $postal_code ); ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'city' ); ?>"><?php _e( 'City :', 'rich-contact-widget' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'city' ); ?>" name="<?php echo $this->get_field_name( 'city' ); ?>" type="text" value="<?php echo esc_attr( $city ); ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'country' ); ?>"><?php _e( 'Country :', 'rich-contact-widget' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'country' ); ?>" name="<?php echo $this->get_field_name( 'country' ); ?>" type="text" value="<?php echo esc_attr( $country ); ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'phone' ); ?>"><?php _e( 'Phone number :', 'rich-contact-widget' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'phone' ); ?>" name="<?php echo $this->get_field_name( 'phone' ); ?>" type="text" value="<?php echo esc_attr( $phone ); ?>" />
-		</p>
-		<p>
-			<label for="<?php echo $this->get_field_id( 'email' ); ?>"><?php _e( 'Email address :', 'rich-contact-widget' ); ?></label>
-			<input class="widefat" id="<?php echo $this->get_field_id( 'email' ); ?>" name="<?php echo $this->get_field_name( 'email' ); ?>" type="text" value="<?php echo esc_attr( $email ); ?>" />
-		</p>
-		<?php 
+		if ( $type == 'person' ) {
+			$checked_person = 'checked';
+		} else if ( $type =='company' ) {
+			$checked_company = 'checked';
+		}
+
+		$widget_form_output = '<p>
+		<label for="' . $this->get_field_id( 'title' ) . '">' . __( 'Title :' , 'rich-contact-widget') . '</label> 
+		<input class="widefat" id="' . $this->get_field_id( 'title' ) . '" name="' . $this->get_field_name( 'title' ) . '" type="text" value="' . esc_attr( $title ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			' . _e('Type :', 'rich-contact-widget')  .'<br />
+			<input id="' . $this->get_field_id( 'person' ) . '" name="' . $this->get_field_name( 'type' ) . '" type="radio" value="person" ' . $checked_person . ' />
+			<label for="' . $this->get_field_id( 'person' ) . '">' . __('Person', 'rich-contact-widget') . '<br />
+			<input id="' . $this->get_field_id( 'company' ) . '" name="'  . $this->get_field_name( 'type' )  . '" type="radio" value="company" ' . $checked_company . ' />
+			<label for="' . $this->get_field_id( 'company' ) . '">' . __('Company', 'rich-contact-widget') . '
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'name' ) . '">' . __( 'Company name/Your name :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'name' ). '"> name="' . $this->get_field_name( 'name' ) . '" type="text" value="' . esc_attr( $name ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id('activity') . '">' . __('Activity/Job :', 'rich-contact-widget') . '</label>
+			<input class="widefat" id="' . $this->get_field_id('activity') . '" name="' . $this->get_field_name('activity'); . '" type="text" value="' . esc_attr( $activity ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'address' ) . '">' . __( 'Company address :', 'rich-contact-widget' ) . '</label>
+			<textarea class="widefat" id="' . $this->get_field_id( 'address' ) . '" name="' . $this->get_field_name( 'address' ) . '">' . esc_textarea( $address ) . '</textarea>
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'postal_code' ) . '">' . __( 'Postal/ZIP code :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'postal_code' ) . '" name="' . $this->get_field_name( 'postal_code' ) . '" type="text" value="' . esc_attr( $postal_code ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'city' ) . '">' . __( 'City :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'city' ) . '" name="' . $this->get_field_name( 'city' ) . '" type="text" value="' .  esc_attr( $city ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'country' ) . '">' . __( 'Country :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'country' ) . '" name="' . $this->get_field_name( 'country' ) . '" type="text" value="' . esc_attr( $country ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'phone' ) . '">' . __( 'Phone number :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'phone' ) . '" name="' . $this->get_field_name( 'phone' ) . '" type="text" value="' . esc_attr( $phone ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'email' ) . '">' . __( 'Email address :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'email' ) . '" name="' . $this->get_field_name( 'email' ) . '" type="text" value="' . esc_attr( $email ) . '" />
+		</p>';
+		$widget_form_output .= apply_filters( 'rc_widget_form_output', $widget_form_output );
+		echo $widget_form_output;
 	}
 
 } // class RC_Widget
