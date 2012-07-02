@@ -76,7 +76,7 @@ class RC_Widget extends WP_Widget {
 			$activity = 'jobTitle';
 			$org = '';
 		} else {
-			$type = 'Corporation';
+			$type = apply_filters('rc_widget_type', 'Corporation');
 			$activity = 'description';
 			$org = ' org';
 		}
