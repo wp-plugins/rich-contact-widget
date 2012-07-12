@@ -31,7 +31,7 @@ class RC_Widget extends WP_Widget {
 	/**
 	 * Array containing the keys for each value of the contact fields
 	 */
-	public $widget_keys = apply_filters( 'rc_widget_keys', array(
+	public $widget_keys = array(
 			'title',
 			'type',
 			'name',
@@ -42,7 +42,7 @@ class RC_Widget extends WP_Widget {
 			'country',
 			'phone',
 			'email'
-		)
+		
 	);
 
 	/**
