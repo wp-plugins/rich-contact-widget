@@ -115,7 +115,7 @@ class RC_Widget extends WP_Widget {
 			}
 
 		$widget_output .= '</ul>';
-		$widget_output = apply_filters( 'rc_widget_output', $widget_output );
+		$widget_output = apply_filters( 'rc_widget_output', $widget_output, $instance );
 		echo $widget_output;
 		echo $after_widget;
 	}
@@ -207,7 +207,7 @@ class RC_Widget extends WP_Widget {
 			<label for="' . $this->get_field_id( 'email' ) . '">' . __( 'Email address :', 'rich-contact-widget' ) . '</label>
 			<input class="widefat" id="' . $this->get_field_id( 'email' ) . '" name="' . $this->get_field_name( 'email' ) . '" type="text" value="' . esc_attr( $email ) . '" />
 		</p>';
-		$widget_form_output = apply_filters( 'rc_widget_form_output', $widget_form_output );
+		$widget_form_output = apply_filters( 'rc_widget_form_output', $widget_form_output, $instance );
 		echo $widget_form_output;
 	}
 
