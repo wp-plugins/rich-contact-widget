@@ -1,0 +1,73 @@
+# Copyright (C) 2012 Rich Contact Widget
+# This file is distributed under the same license as the Rich Contact Widget package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Rich Contact Widget 0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/rich-contact-widget\n"
+"POT-Creation-Date: 2012-06-25 01:37:17+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: rich-contact-widget.php:52
+msgid "A contact widget enhanced with microdatas & microformats tags"
+msgstr ""
+
+#: rich-contact-widget.php:145
+msgid "Contact"
+msgstr ""
+
+#: rich-contact-widget.php:154
+msgid "Title :"
+msgstr ""
+
+#: rich-contact-widget.php:158
+msgid "Company name :"
+msgstr ""
+
+#: rich-contact-widget.php:162
+msgid "Company address :"
+msgstr ""
+
+#: rich-contact-widget.php:166
+msgid "Postal/ZIP code :"
+msgstr ""
+
+#: rich-contact-widget.php:170
+msgid "City :"
+msgstr ""
+
+#: rich-contact-widget.php:174
+msgid "Country :"
+msgstr ""
+
+#: rich-contact-widget.php:178
+msgid "Phone number :"
+msgstr ""
+
+#: rich-contact-widget.php:182
+msgid "Email address :"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Rich Contact Widget"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://URI_Of_Page_Describing_Plugin_and_Updates"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A simple contact widget enhanced with microdatas & microformats tags"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Rémy Perona"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://remyperona.fr"
+msgstr ""
