@@ -31,7 +31,8 @@ class RC_Widget extends WP_Widget {
 	/**
 	 * Array containing the keys for each value of the contact fields
 	 */
-	public $widget_keys = array(
+	public function widget_keys() {
+		$widget_keys = apply_filters( 'rc_widget_keys', array(
 			'title',
 			'type',
 			'name',
@@ -42,8 +43,10 @@ class RC_Widget extends WP_Widget {
 			'country',
 			'phone',
 			'email'
-		
-	);
+			)
+		);
+		return $widget_keys;
+	} 
 
 	/**
 	 * Register widget with WordPress.
@@ -128,13 +131,12 @@ class RC_Widget extends WP_Widget {
 	 * @return array Updated safe values to be saved.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance = $old_instance;
-		foreach ( $this->widget_keys as $key=>$value ) {
-			if ( $old_instance[ $value ] != $new_instance[ $value ] || !array_key_exists($value, $instance) ) {
-				$instance[ $value ] = strip_tags( $new_instance[$value] );
+		foreach ( $this->widget_keys() as $key=>$value ) {
+			if ( $old_instance[ $value ] != $new_instance[ $value ] || !array_key_exists($value, $old_instance) ) {
+				$new_instance[ $value ] = strip_tags( $new_instance[$value] );
 			}
 		}
-		return $instance;
+		return $new_instance;
 	}
 
 	/**
@@ -145,7 +147,7 @@ class RC_Widget extends WP_Widget {
 	 * @param array $instance Previously saved values from database.
 	 */
 	public function form( $instance ) {
-		foreach ( $this->widget_keys as $key=>$value ) {
+		foreach ( $this->widget_keys() as $key=>$value ) {
 			if ( !array_key_exists( $value, $instance ) && $value == 'title' ) {
 				${$value} = __( 'Contact', 'rich-contact-widget' );
 			} elseif ( !array_key_exists( $value, $instance ) ) {
@@ -156,8 +158,10 @@ class RC_Widget extends WP_Widget {
 		}
 		if ( $type == 'person' ) {
 			$checked_person = 'checked';
+			$checked_company = '';
 		} else if ( $type =='company' ) {
 			$checked_company = 'checked';
+			$checked_person = '';
 		}
 
 		$widget_form_output = '<p>
@@ -165,7 +169,7 @@ class RC_Widget extends WP_Widget {
 		<input class="widefat" id="' . $this->get_field_id( 'title' ) . '" name="' . $this->get_field_name( 'title' ) . '" type="text" value="' . esc_attr( $title ) . '" />
 		</p>';
 		$widget_form_output .= '<p>
-			' . _e('Type :', 'rich-contact-widget')  .'<br />
+			' . __('Type :', 'rich-contact-widget')  .'<br />
 			<input id="' . $this->get_field_id( 'person' ) . '" name="' . $this->get_field_name( 'type' ) . '" type="radio" value="person" ' . $checked_person . ' />
 			<label for="' . $this->get_field_id( 'person' ) . '">' . __('Person', 'rich-contact-widget') . '<br />
 			<input id="' . $this->get_field_id( 'company' ) . '" name="'  . $this->get_field_name( 'type' )  . '" type="radio" value="company" ' . $checked_company . ' />
@@ -173,11 +177,11 @@ class RC_Widget extends WP_Widget {
 		</p>';
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id( 'name' ) . '">' . __( 'Company name/Your name :', 'rich-contact-widget' ) . '</label>
-			<input class="widefat" id="' . $this->get_field_id( 'name' ). '"> name="' . $this->get_field_name( 'name' ) . '" type="text" value="' . esc_attr( $name ) . '" />
+			<input class="widefat" id="' . $this->get_field_id( 'name' ). '" name="' . $this->get_field_name( 'name' ) . '" type="text" value="' . esc_attr( $name ) . '" />
 		</p>';
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id('activity') . '">' . __('Activity/Job :', 'rich-contact-widget') . '</label>
-			<input class="widefat" id="' . $this->get_field_id('activity') . '" name="' . $this->get_field_name('activity'); . '" type="text" value="' . esc_attr( $activity ) . '" />
+			<input class="widefat" id="' . $this->get_field_id('activity') . '" name="' . $this->get_field_name('activity') . '" type="text" value="' . esc_attr( $activity ) . '" />
 		</p>';
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id( 'address' ) . '">' . __( 'Company address :', 'rich-contact-widget' ) . '</label>
@@ -203,7 +207,7 @@ class RC_Widget extends WP_Widget {
 			<label for="' . $this->get_field_id( 'email' ) . '">' . __( 'Email address :', 'rich-contact-widget' ) . '</label>
 			<input class="widefat" id="' . $this->get_field_id( 'email' ) . '" name="' . $this->get_field_name( 'email' ) . '" type="text" value="' . esc_attr( $email ) . '" />
 		</p>';
-		$widget_form_output .= apply_filters( 'rc_widget_form_output', $widget_form_output );
+		$widget_form_output = apply_filters( 'rc_widget_form_output', $widget_form_output );
 		echo $widget_form_output;
 	}
 
