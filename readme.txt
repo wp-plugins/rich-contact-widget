@@ -36,8 +36,8 @@ Rich Contact Widget requires PHP5 to work !
 
 = How to change the output using the filters ? =
 
-*You can add or remove fields in the contact widget with the 'rc_widget_keys', 'rc_widget_form_ouput' and 'rc_widget_output' filters.
-*You can change the Company type in the schema.org itemtype to better fit your business with the 'rc_widget_type' filter. Values could be Organization, LocalBusiness, etc.
+* You can add or remove fields in the contact widget with the 'rc_widget_keys', 'rc_widget_form_ouput' and 'rc_widget_output' filters.
+* You can change the Company type in the schema.org itemtype to better fit your business with the 'rc_widget_type' filter. Values could be Organization, LocalBusiness, etc.
 
 == Screenshots ==
 
