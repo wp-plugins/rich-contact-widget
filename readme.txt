@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformat, widget, contact, rich snippets
 Requires at least: 3.2.1
 Tested up to: 3.4.1
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,9 +16,7 @@ This contact widget comes with enhanced markup for microdatas & microformats, so
 
 The telephone & email are linked so that visitors can click on it and make a call (through mobile or skype) or send a mail from their computer or their mobile devices.
 
-More informations on microdatas microformats can be found here :
-* http://schema.org
-* http://microformats.org/
+More informations on microdatas microformats can be found here : http://schema.org & http://microformats.org/
 
 Feedbacks and suggestions for improvement are greatly appreciated !
 
@@ -36,8 +34,9 @@ Rich Contact Widget requires PHP5 to work !
 
 = How to change the output using the filters ? =
 
-* You can add or remove fields in the contact widget with the 'rc_widget_keys', 'rc_widget_form_ouput' and 'rc_widget_output' filters.
-* You can change the Company type in the schema.org itemtype to better fit your business with the 'rc_widget_type' filter. Values could be Organization, LocalBusiness, etc.
+* You can add or remove fields in the contact widget output and widget form with the 'rc_widget_keys', 'rc_widget_form_ouput' and 'rc_widget_output' filters.
+
+* You can change the Company type of the schema.org itemtype to better fit your business with the 'rc_widget_type' filter. Values could be Organization, LocalBusiness, etc.
 
 == Screenshots ==
 
@@ -45,6 +44,9 @@ Rich Contact Widget requires PHP5 to work !
 2. The widget display on twenty ten theme
 
 == Changelog ==
+
+= 0.4 =
+Added antispambot on email adress
 
 = 0.3 =
 Added filters to change the output of the widget

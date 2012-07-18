@@ -111,7 +111,7 @@ class RC_Widget extends WP_Widget {
 				$widget_output .= '<li class="tel" itemprop="telephone"><a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a></li>';
 			}
 			if ( !empty( $instance['email'] ) ) {
-				$widget_output .= '<li class="email" itemprop="email"><a href="mailto:' . $instance['email'] . '">' . $instance['email'] . '</a></li>';
+				$widget_output .= '<li class="email" itemprop="email"><a href="mailto:' . antispambot($instance['email']) . '">' . $instance['email'] . '</a></li>';
 			}
 
 		$widget_output .= '</ul>';
