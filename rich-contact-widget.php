@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 0.3
+Version: 0.4
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
