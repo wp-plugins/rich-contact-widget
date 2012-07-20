@@ -42,6 +42,7 @@ Rich Contact Widget requires PHP5 to work !
 
 1. the widget configuration fields
 2. The widget display on twenty ten theme
+3. Rich Snippet result on search results page
 
 == Changelog ==
 
