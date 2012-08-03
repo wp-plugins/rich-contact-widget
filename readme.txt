@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformat, widget, contact, rich snippets
 Requires at least: 3.2.1
 Tested up to: 3.4.1
-Stable tag: 0.4
+Stable tag: 0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +15,8 @@ This contact widget comes with enhanced markup for microdatas & microformats, so
 This contact widget comes with enhanced markup for microdatas & microformats, so that search engines can use it in their search results. They can help display contact informations about your business or yourself below your website in search results, and even a map with your location.
 
 The telephone & email are linked so that visitors can click on it and make a call (through mobile or skype) or send a mail from their computer or their mobile devices.
+
+You can also display a static image map of your location, linking to the address' Google Maps page.
 
 More informations on microdatas microformats can be found here : http://schema.org & http://microformats.org/
 
@@ -45,6 +47,9 @@ Rich Contact Widget requires PHP5 to work !
 3. Rich Snippet result on search results page
 
 == Changelog ==
+
+= 0.5 =
+Added option for static image map displayed in the widget, linking to Google Maps
 
 = 0.4 =
 Added antispambot on email adress

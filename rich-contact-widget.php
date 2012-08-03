@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 0.4
+Version: 0.5
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -42,7 +42,10 @@ class RC_Widget extends WP_Widget {
 			'city',
 			'country',
 			'phone',
-			'email'
+			'email',
+			'map',
+			'map_width',
+			'map_height'
 			)
 		);
 		return $widget_keys;
@@ -79,9 +82,14 @@ class RC_Widget extends WP_Widget {
 			$activity = 'jobTitle';
 			$org = '';
 		} else {
-			$type = apply_filters('rc_widget_type', 'Corporation');
+			$type = apply_filters( 'rc_widget_type', 'Corporation' );
 			$activity = 'description';
 			$org = ' org';
+		}
+		
+		if ( $instance['map'] == 1 ) {
+    		$map_adress = $instance['address'] . ' ' . $instance['postal_code'] . ' ' . $instance['city'] . ' ' . $instance['country'];
+    		$encoded_map_adress = str_replace( ' ', '+', $map_adress );
 		}
 
 		$widget_output = '<ul class="vcard" itemscope itemtype="http://schema.org/'. $type. '">';
@@ -115,6 +123,9 @@ class RC_Widget extends WP_Widget {
 			}
 
 		$widget_output .= '</ul>';
+		if ( $instance['map'] == 1 ) {
+    		$widget_output .= '<a href="http://mapof.it/'. $encoded_map_adress . '"><img src="http://maps.googleapis.com/maps/api/staticmap?center=' . $encoded_map_adress . '&zoom=15&size=' . $instance['map_width'] . 'x' . $instance['map_height'] . '&sensor=false&markers=' . $encoded_map_adress . '" alt="' . __('Map for', 'rich_contact-widget') . ' ' . $map_adress . '"></a>';
+        }
 		$widget_output = apply_filters( 'rc_widget_output', $widget_output, $instance );
 		echo $widget_output;
 		echo $after_widget;
@@ -163,6 +174,14 @@ class RC_Widget extends WP_Widget {
 			$checked_company = 'checked';
 			$checked_person = '';
 		}
+		
+		if ( $map == '1' ) {
+    		$selected_map = 'selected';
+    		$not_selected_map = '';
+		} else {
+    		$selected_map = '';
+    		$not_selected_map = 'selected';
+		}
 
 		$widget_form_output = '<p>
 		<label for="' . $this->get_field_id( 'title' ) . '">' . __( 'Title :' , 'rich-contact-widget') . '</label> 
@@ -206,6 +225,21 @@ class RC_Widget extends WP_Widget {
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id( 'email' ) . '">' . __( 'Email address :', 'rich-contact-widget' ) . '</label>
 			<input class="widefat" id="' . $this->get_field_id( 'email' ) . '" name="' . $this->get_field_name( 'email' ) . '" type="text" value="' . esc_attr( $email ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'map' ) . '">' . __( 'Show image map :', 'rich-contact-widget' ) . '</label>
+			<select name="' . $this->get_field_name( 'map' ) . '" id="' . $this->get_field_id( 'map' ) . '">
+			 <option value="1" ' . $selected_map . '>' . __('Yes', 'rich-contact-widget') . '</option>
+			 <option value="0" ' . $not_selected_map . '>' . __('No', 'rich-contact-widget') . '</option>
+			 </select>
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'map_width' ) . '">' . __( 'Image map width (max 640px) :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'map_width' ) . '" name="' . $this->get_field_name( 'map_width' ) . '" type="text" value="' . esc_attr( $map_width ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'map_height' ) . '">' . __( 'Image map height (max 640px) :', 'rich-contact-widget' ) . '</label>
+			<input class="widefat" id="' . $this->get_field_id( 'map_height' ) . '" name="' . $this->get_field_name( 'map_height' ) . '" type="text" value="' . esc_attr( $map_height ) . '" />
 		</p>';
 		$widget_form_output = apply_filters( 'rc_widget_form_output', $widget_form_output, $instance );
 		echo $widget_form_output;
