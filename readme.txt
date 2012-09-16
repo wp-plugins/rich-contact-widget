@@ -51,6 +51,7 @@ Rich Contact Widget requires PHP5 to work !
 = 0.6 =
 * Added mobile check with is_mobile() for the "tel:" link (link is displayed only if is_mobile() is true)
 * Cleaned up some code with checked() and selected() functions
+* Moved screenshots to assets folder, reducing the size of the plugin zip file
 
 = 0.5 =
 Added option for static image map displayed in the widget, linking to Google Maps
