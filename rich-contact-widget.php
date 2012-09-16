@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 0.5
+Version: 0.6
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -116,7 +116,12 @@ class RC_Widget extends WP_Widget {
 				}
 			$widget_output .= '</ul>';
 			if ( !empty( $instance['phone'] ) ) {
-				$widget_output .= '<li class="tel" itemprop="telephone"><a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a></li>';
+				$widget_output .= '<li class="tel" itemprop="telephone">';
+				if ( is_mobile() ) {
+				    $widget_output .= '<a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a>';
+				else
+				    $widget_output .= $instance['phone'];
+				$widget_output .= '</li>';
 			}
 			if ( !empty( $instance['email'] ) ) {
 				$widget_output .= '<li class="email" itemprop="email"><a href="mailto:' . antispambot($instance['email']) . '">' . $instance['email'] . '</a></li>';
@@ -167,21 +172,6 @@ class RC_Widget extends WP_Widget {
 				${$value} = $instance[ $value ];
 			}
 		}
-		if ( $type == 'person' ) {
-			$checked_person = 'checked';
-			$checked_company = '';
-		} else if ( $type =='company' ) {
-			$checked_company = 'checked';
-			$checked_person = '';
-		}
-		
-		if ( $map == '1' ) {
-    		$selected_map = 'selected';
-    		$not_selected_map = '';
-		} else {
-    		$selected_map = '';
-    		$not_selected_map = 'selected';
-		}
 
 		$widget_form_output = '<p>
 		<label for="' . $this->get_field_id( 'title' ) . '">' . __( 'Title :' , 'rich-contact-widget') . '</label> 
@@ -189,9 +179,9 @@ class RC_Widget extends WP_Widget {
 		</p>';
 		$widget_form_output .= '<p>
 			' . __('Type :', 'rich-contact-widget')  .'<br />
-			<input id="' . $this->get_field_id( 'person' ) . '" name="' . $this->get_field_name( 'type' ) . '" type="radio" value="person" ' . $checked_person . ' />
+			<input id="' . $this->get_field_id( 'person' ) . '" name="' . $this->get_field_name( 'type' ) . '" type="radio" value="person" ' . checked( $type, 'person', false ) . ' />
 			<label for="' . $this->get_field_id( 'person' ) . '">' . __('Person', 'rich-contact-widget') . '<br />
-			<input id="' . $this->get_field_id( 'company' ) . '" name="'  . $this->get_field_name( 'type' )  . '" type="radio" value="company" ' . $checked_company . ' />
+			<input id="' . $this->get_field_id( 'company' ) . '" name="'  . $this->get_field_name( 'type' )  . '" type="radio" value="company" ' . checked( $type, 'company', false ) . ' />
 			<label for="' . $this->get_field_id( 'company' ) . '">' . __('Company', 'rich-contact-widget') . '
 		</p>';
 		$widget_form_output .= '<p>
@@ -229,8 +219,8 @@ class RC_Widget extends WP_Widget {
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id( 'map' ) . '">' . __( 'Show image map :', 'rich-contact-widget' ) . '</label>
 			<select name="' . $this->get_field_name( 'map' ) . '" id="' . $this->get_field_id( 'map' ) . '">
-			 <option value="1" ' . $selected_map . '>' . __('Yes', 'rich-contact-widget') . '</option>
-			 <option value="0" ' . $not_selected_map . '>' . __('No', 'rich-contact-widget') . '</option>
+			 <option value="1" ' . selected( $map, 1, false ) . '>' . __('Yes', 'rich-contact-widget') . '</option>
+			 <option value="0" ' . selected( $map, 0, false ) . '>' . __('No', 'rich-contact-widget') . '</option>
 			 </select>
 		</p>';
 		$widget_form_output .= '<p>

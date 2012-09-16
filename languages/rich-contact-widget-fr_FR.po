@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Rich Contact Widget 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-03 17:46+0100\n"
-"PO-Revision-Date: 2012-08-03 17:48+0100\n"
+"POT-Creation-Date: 2012-09-16 19:53+0100\n"
+"PO-Revision-Date: 2012-09-16 19:54+0100\n"
 "Last-Translator: Rémy Perona <remperona@gmail.com>\n"
 "Language-Team: Rémy Perona <remperona@gmail.com>\n"
 "Language: fr_FR\n"
@@ -20,6 +20,7 @@ msgstr ""
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:54
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:58
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:58
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:61
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:61
 msgid "A contact widget enhanced with microdatas & microformats tags"
 msgstr ""
@@ -28,114 +29,133 @@ msgstr ""
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:158
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:152
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:152
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:163
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:163
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:168
 msgid "Contact"
 msgstr "Contact"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:167
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:168
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:168
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:187
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:187
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:177
 msgid "Title :"
 msgstr "Titre :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:171
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:172
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:172
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:191
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:191
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:181
 msgid "Type :"
 msgstr "Type :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:173
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:174
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:174
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:193
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:193
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:183
 msgid "Person"
 msgstr "Personne"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:175
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:176
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:176
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:195
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:195
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:185
 msgid "Company"
 msgstr "Société"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:177
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:179
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:179
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:198
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:198
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:188
 msgid "Company name/Your name :"
 msgstr "Nom de la société/Votre nom :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:181
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:183
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:183
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:202
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:202
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:192
 msgid "Activity/Job :"
 msgstr "Secteur d'activité/Emploi :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:185
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:187
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:187
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:206
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:206
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:196
 msgid "Company address :"
 msgstr "Adresse :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:189
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:191
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:191
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:210
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:210
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:200
 msgid "Postal/ZIP code :"
 msgstr "Code Postal :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:193
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:195
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:195
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:214
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:214
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:204
 msgid "City :"
 msgstr "Ville :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:197
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:199
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:199
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:218
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:218
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:208
 msgid "Country :"
 msgstr "Pays :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:201
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:203
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:203
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:222
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:222
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:212
 msgid "Phone number :"
 msgstr "Numéro de téléphone :"
 
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.2/rich-contact-widget.php:205
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.3/rich-contact-widget.php:207
 #: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.4/rich-contact-widget.php:207
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:226
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:226
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:216
 msgid "Email address :"
 msgstr "Adresse courriel :"
 
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:127
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:127
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:132
 msgid "Map for"
 msgstr "Carte pour"
 
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:230
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:230
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:220
 msgid "Show image map :"
 msgstr "Afficher la carte (image statique)"
 
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:232
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:232
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:222
 msgid "Yes"
 msgstr "Oui"
 
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:233
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:233
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:223
 msgid "No"
 msgstr "Non"
 
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:237
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:237
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:227
 msgid "Image map width (max 640px) :"
 msgstr "Largeur de l'image (640px max)"
 
-#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:241
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/tags/0.5/rich-contact-widget.php:241
+#: /Users/yui/Sites/wordpress/wp-content/plugins/rich-contact-widget/trunk/rich-contact-widget.php:231
 msgid "Image map height (max 640px) :"
 msgstr "Hauteur de l'image (640px max)"
