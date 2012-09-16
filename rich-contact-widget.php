@@ -117,7 +117,7 @@ class RC_Widget extends WP_Widget {
 			$widget_output .= '</ul>';
 			if ( !empty( $instance['phone'] ) ) {
 				$widget_output .= '<li class="tel" itemprop="telephone">';
-				if ( is_mobile() )
+				if ( wp_is_mobile() )
 				    $widget_output .= '<a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a>';
 				else
 				    $widget_output .= $instance['phone'];
