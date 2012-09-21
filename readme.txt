@@ -50,6 +50,7 @@ Rich Contact Widget requires PHP5 to work !
 
 = 0.7 =
 * Updated to work with US addresses (added state field and changed output a little)
+* Added width and height attributes to image map
 
 = 0.6 =
 * Added mobile check with is_mobile() for the "tel:" link (link is displayed only if is_mobile() is true)
