@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformat, widget, contact, rich snippets
 Requires at least: 3.2.1
 Tested up to: 3.4.2
-Stable tag: 0.6
+Stable tag: 0.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,9 @@ Rich Contact Widget requires PHP5 to work !
 3. Rich Snippet result on search results page
 
 == Changelog ==
+
+= 0.7 =
+* Updated to work with US addresses (added state field and changed output a little)
 
 = 0.6 =
 * Added mobile check with is_mobile() for the "tel:" link (link is displayed only if is_mobile() is true)
