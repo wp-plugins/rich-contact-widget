@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 0.6
+Version: 0.7
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -38,6 +38,7 @@ class RC_Widget extends WP_Widget {
 			'name',
 			'activity',
 			'address',
+			'state',
 			'postal_code',
 			'city',
 			'country',
@@ -86,10 +87,13 @@ class RC_Widget extends WP_Widget {
 			$activity = 'description';
 			$org = ' org';
 		}
-		
+
 		if ( $instance['map'] == 1 ) {
-    		$map_adress = $instance['address'] . ' ' . $instance['postal_code'] . ' ' . $instance['city'] . ' ' . $instance['country'];
-    		$encoded_map_adress = str_replace( ' ', '+', $map_adress );
+		  if (get_locale() == 'en_US')
+		      $map_adress = $instance['address'] . ' ' . $instance['city'] . ' ' . $instance['state'] . ' ' . $instance['postal_code'] . ' ' . $instance['country'];
+		  else
+		      $map_adress = $instance['address'] . ' ' . $instance['postal_code'] . ' ' . $instance['city'] . ' ' . $instance['country'];
+		      $encoded_map_adress = str_replace( ' ', '+', $map_adress );
 		}
 
 		$widget_output = '<ul class="vcard" itemscope itemtype="http://schema.org/'. $type. '">';
@@ -101,13 +105,26 @@ class RC_Widget extends WP_Widget {
 				if ( !empty( $instance['address'] ) ) {
 					$widget_output .= '<li class="street-address" itemprop="streetAddress">' . $instance['address'] . '</li>';
 					}
-				if ( !empty( $instance['postal_code'] ) || !empty( $instance['city'] ) ) {
+				if ( !empty( $instance['postal_code'] ) || ( get_locale() == 'en_US' && !empty( $instance['state'] ) ) ||!empty( $instance['city'] ) ) {
 					$widget_output.= '<li>';
-					if ( !empty( $instance['postal_code'] ) ) {
-						$widget_output .= '<span class="postal-code" itemprop="postalCode">' . $instance['postal_code'] . '</span>&nbsp;';
+					if ( get_locale() == 'en_US' ) {
+    					if ( !empty( $instance['city'] ) ) {
+        					$widget_output .= '<span class="locality" itemprop="addressLocality">' . $instance['city'] . '</span>,&nbsp;';
+        				}
+        				if ( !empty( $instance['state'] ) ) {
+            				$widget_output .= '<span class="region" itemprop="addressRegion">' . $instance['state'] . '</span>&nbsp;';
+                        }
+                        if ( !empty( $instance['postal_code'] ) ) {
+                            $widget_output .= '<span class="postal-code" itemprop="postalCode">' . $instance['postal_code'] . '</span>';
+	  					}
 					}
-					if ( !empty( $instance['city'] ) ) {
-						$widget_output .= '<span class="locality" itemprop="addressLocality">' . $instance['city'] . '</span>';
+					else {
+					   if ( !empty( $instance['postal_code'] ) ) {
+					   	   $widget_output .= '<span class="postal-code" itemprop="postalCode">' . $instance['postal_code'] . '</span>&nbsp;';
+					   }
+					   if ( !empty( $instance['city'] ) ) {
+					   	   $widget_output .= '<span class="locality" itemprop="addressLocality">' . $instance['city'] . '</span>';
+					   }
 					}
 					$widget_output .= '</li>';
 				}
@@ -129,7 +146,7 @@ class RC_Widget extends WP_Widget {
 
 		$widget_output .= '</ul>';
 		if ( $instance['map'] == 1 ) {
-    		$widget_output .= '<a href="http://mapof.it/'. $encoded_map_adress . '"><img src="http://maps.googleapis.com/maps/api/staticmap?center=' . $encoded_map_adress . '&zoom=15&size=' . $instance['map_width'] . 'x' . $instance['map_height'] . '&sensor=false&markers=' . $encoded_map_adress . '" alt="' . __('Map for', 'rich_contact-widget') . ' ' . $map_adress . '"></a>';
+    		$widget_output .= '<a href="http://mapof.it/'. $encoded_map_adress . '"><img src="http://maps.googleapis.com/maps/api/staticmap?center=' . $encoded_map_adress . '&zoom=15&size=' . $instance['map_width'] . 'x' . $instance['map_height'] . '&sensor=false&markers=' . $encoded_map_adress . '" alt="' . __('Map for', 'rich_contact-widget') . ' ' . $map_adress . '" width="' . $instance['map_width'] . '" height="' . $instance['map_height'] . '"></a>';
         }
 		$widget_output = apply_filters( 'rc_widget_output', $widget_output, $instance );
 		echo $widget_output;
@@ -204,6 +221,12 @@ class RC_Widget extends WP_Widget {
 			<label for="' . $this->get_field_id( 'city' ) . '">' . __( 'City :', 'rich-contact-widget' ) . '</label>
 			<input class="widefat" id="' . $this->get_field_id( 'city' ) . '" name="' . $this->get_field_name( 'city' ) . '" type="text" value="' .  esc_attr( $city ) . '" />
 		</p>';
+		if ( get_locale() == 'en_US' ) {
+    		$widget_form_output .= '<p>
+    		  <label for="' . $this->get_field_id( 'state' ) . '">' . __( 'State :', 'rich-contact-widget' ) . '</label>
+    		  <input class="widefat" id="' . $this->get_field_id( 'state' ) . '" name="' . $this->get_field_name( 'state' ) . '" type="text" value="' . esc_attr( $state ) . '" />
+    		  </p>';
+ 		}
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id( 'country' ) . '">' . __( 'Country :', 'rich-contact-widget' ) . '</label>
 			<input class="widefat" id="' . $this->get_field_id( 'country' ) . '" name="' . $this->get_field_name( 'country' ) . '" type="text" value="' . esc_attr( $country ) . '" />
