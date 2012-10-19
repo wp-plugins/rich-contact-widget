@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 0.7
+Version: 1.0
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -23,6 +23,35 @@ Text Domain: rich-contact-widget
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+/**
+ * Class for vcard creation & saving
+ */
+class VCF {
+    var $data;
+    var $name;
+    function VCF($data) {
+        $this->name = strtolower( remove_accents( trim( str_replace( ' ', '', $data['name'] ) ) ) );
+        $this->data = "BEGIN:VCARD\nVERSION:3.0\nREV:".date("Ymd\THis\Z")."\nFN:".$data['name']."\nTITLE:".$data['activity']."\nADR;WORK:;;".$data['address'].";".$data['city'].";;".$data['postal_code'].";".$data['country']."\nTEL;WORK;VOICE:".$data['phone']."\nEMAIL;WORK;INTERNET:".$data['email']."\nURL;WORK:". home_url() ."\nEND:VCARD";
+    }
+
+    function save() {
+        $url = wp_nonce_url('widgets.php?editwidget=rc_widget-2','rich-contact-widget');
+        if (false === ($creds = request_filesystem_credentials($url, '', false, false, null) ) ) {
+            return; // stop processing here
+        }
+        if ( ! WP_Filesystem($creds) ) {
+            request_filesystem_credentials($url, '', true, false, null);
+            return;
+        }
+        $upload_dir = wp_upload_dir();
+        global $wp_filesystem;
+        $wp_filesystem->put_contents(
+            $upload_dir['basedir'] . '/'. $this->name . '.vcf',
+            $this->data
+        );
+    }
+}
+
 /**
  * Adds RC_Widget widget.
  */
@@ -46,7 +75,8 @@ class RC_Widget extends WP_Widget {
 			'email',
 			'map',
 			'map_width',
-			'map_height'
+			'map_height',
+			'vcf'
 			)
 		);
 		return $widget_keys;
@@ -134,14 +164,22 @@ class RC_Widget extends WP_Widget {
 			$widget_output .= '</ul>';
 			if ( !empty( $instance['phone'] ) ) {
 				$widget_output .= '<li class="tel" itemprop="telephone">';
-				if ( wp_is_mobile() )
-				    $widget_output .= '<a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a>';
+
+				global $wp_version;
+				if ( version_compare( $wp_version, '3.4', '>=' ) && wp_is_mobile() ) {
+				        $widget_output .= '<a href="tel:' . $instance['phone'] . '">' . $instance['phone'] . '</a>';
+				}
 				else
 				    $widget_output .= $instance['phone'];
 				$widget_output .= '</li>';
 			}
 			if ( !empty( $instance['email'] ) ) {
 				$widget_output .= '<li class="email" itemprop="email"><a href="mailto:' . antispambot($instance['email']) . '">' . $instance['email'] . '</a></li>';
+			}
+
+			if ( $instance['vcf'] == 1 ) {
+    			$upload_dir = wp_upload_dir();
+    			$widget_output .= '<li class="vcf"><a href="' . $upload_dir['baseurl'] . '/' . strtolower( remove_accents( trim( str_replace( ' ', '', $instance['name'] ) ) ) ) . '.vcf">' . __( 'Download vCard', 'rich-contact-widget' ) . '</a></li>';
 			}
 
 		$widget_output .= '</ul>';
@@ -169,6 +207,10 @@ class RC_Widget extends WP_Widget {
 				$new_instance[ $value ] = strip_tags( $new_instance[$value] );
 			}
 		}
+		if ( $new_instance['vcf'] == 1 ) {
+		  $vcf = new VCF( $new_instance );
+		  $vcf->save();
+		  }
 		return $new_instance;
 	}
 
@@ -253,6 +295,13 @@ class RC_Widget extends WP_Widget {
 		$widget_form_output .= '<p>
 			<label for="' . $this->get_field_id( 'map_height' ) . '">' . __( 'Image map height (max 640px) :', 'rich-contact-widget' ) . '</label>
 			<input class="widefat" id="' . $this->get_field_id( 'map_height' ) . '" name="' . $this->get_field_name( 'map_height' ) . '" type="text" value="' . esc_attr( $map_height ) . '" />
+		</p>';
+		$widget_form_output .= '<p>
+			<label for="' . $this->get_field_id( 'vcf' ) . '">' . __( 'Show vCard download link :', 'rich-contact-widget' ) . '</label>
+			<select name="' . $this->get_field_name( 'vcf' ) . '" id="' . $this->get_field_id( 'vcf' ) . '">
+			 <option value="1" ' . selected( $vcf, 1, false ) . '>' . __('Yes', 'rich-contact-widget') . '</option>
+			 <option value="0" ' . selected( $vcf, 0, false ) . '>' . __('No', 'rich-contact-widget') . '</option>
+			 </select>
 		</p>';
 		$widget_form_output = apply_filters( 'rc_widget_form_output', $widget_form_output, $instance );
 		echo $widget_form_output;

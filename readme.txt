@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformat, widget, contact, rich snippets
 Requires at least: 3.2.1
 Tested up to: 3.4.2
-Stable tag: 0.7
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +16,7 @@ This contact widget comes with enhanced markup for microdatas & microformats, so
 
 The telephone & email are linked so that visitors can click on it and make a call (through mobile or skype) or send a mail from their computer or their mobile devices.
 
-You can also display a static image map of your location, linking to the address' Google Maps page.
+You can also display a static image map of your location, linking to the address' Google Maps page, and display a download link for a vCard.
 
 More informations on microdatas microformats can be found here : http://schema.org & http://microformats.org/
 
@@ -48,12 +48,16 @@ Rich Contact Widget requires PHP5 to work !
 
 == Changelog ==
 
+= 1.0 =
+* Fix : bug with WP version lower than 3.4 with wp_is_mobile
+* Added : optional link for vCard download
+
 = 0.7 =
 * Updated to work with US addresses (added state field and changed output a little)
 * Added width and height attributes to image map
 
 = 0.6 =
-* Added mobile check with is_mobile() for the "tel:" link (link is displayed only if is_mobile() is true)
+* Added mobile check with wp_is_mobile() for the "tel:" link (link is displayed only if wp_is_mobile() is true)
 * Cleaned up some code with checked() and selected() functions
 * Moved screenshots to assets folder, reducing the size of the plugin zip file
 
