@@ -1,7 +1,7 @@
 === Rich Contact Widget ===
 Contributors: tabrisrp
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74BBTNMWW38&lc=FR&item_name=R%c3%a9my%20Perona&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
-Tags: microdata, microformats, widget, contact, rich snippets
+Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
 Tested up to: 3.5
 Stable tag: 1.0
