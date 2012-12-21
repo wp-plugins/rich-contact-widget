@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
 Tested up to: 3.5
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,6 +48,9 @@ Rich Contact Widget requires PHP5 to work !
 3. Rich Snippet result on search results page
 
 == Changelog ==
+
+= 1.1 =
+*   Added Russian translation
 
 = 1.0 =
 * Fix : bug with WP version lower than 3.4 with wp_is_mobile
