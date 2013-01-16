@@ -123,9 +123,10 @@ class RC_Widget extends WP_Widget {
 		      $map_adress = $instance['address'] . ' ' . $instance['city'] . ' ' . $instance['state'] . ' ' . $instance['postal_code'] . ' ' . $instance['country'];
 		  else
 		      $map_adress = $instance['address'] . ' ' . $instance['postal_code'] . ' ' . $instance['city'] . ' ' . $instance['country'];
-		}
-		$encoded_map_adress = str_replace( ' ', '+', $map_adress );
 
+		$encoded_map_adress = str_replace( ' ', '+', $map_adress );
+		}
+		
 		$widget_output = '<ul class="vcard" itemscope itemtype="http://schema.org/'. $type. '">';
 			if ( !empty( $instance['name'] ) )
 				$widget_output .= '<li class="fn ' . $org . '" itemprop="name"><strong>' . $instance['name'] . '</strong></li>';
