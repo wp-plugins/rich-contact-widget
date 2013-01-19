@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
 Tested up to: 3.5
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -20,11 +20,14 @@ You can also display a static image map of your location, linking to the address
 
 More informations on microdatas microformats can be found here : 
 *   http://schema.org
-*   http://microformats.org/
+*   http://microformats.org
 
 Feedbacks and suggestions for improvement are greatly appreciated !
 
 Rich Contact Widget requires PHP5 to work !
+
+Credits for translation :
+* Slovak by <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
 
 == Installation ==
 
@@ -49,8 +52,12 @@ Rich Contact Widget requires PHP5 to work !
 
 == Changelog ==
 
+= 1.2 =
+* Undefined variable fix
+* Added Slovak translation
+
 = 1.1 =
-*   Added Russian translation
+* Added Russian translation
 
 = 1.0 =
 * Fix : bug with WP version lower than 3.4 with wp_is_mobile
