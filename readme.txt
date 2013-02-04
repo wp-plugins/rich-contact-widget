@@ -18,15 +18,17 @@ The telephone & email are linked so that visitors can click on it and make a cal
 
 You can also display a static image map of your location, linking to the address' Google Maps page, and display a download link for a vCard.
 
-More informations on microdatas microformats can be found here : 
+More informations on microdatas microformats can be found here :
+
 *   http://schema.org
 *   http://microformats.org
 
-Feedbacks and suggestions for improvement are greatly appreciated !
+Feedbacks and suggestions for improvement are greatly appreciated ! You can go to github to help : https://github.com/Tabrisrp/rich-contact-widget
 
 Rich Contact Widget requires PHP5 to work !
 
 Credits for translation :
+
 * Slovak by <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
 
 == Installation ==
