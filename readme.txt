@@ -23,7 +23,7 @@ More informations on microdatas microformats can be found here :
 *   http://schema.org
 *   http://microformats.org
 
-Feedbacks and suggestions for improvement are greatly appreciated !
+Feedbacks and suggestions for improvement are greatly appreciated ! You can go to github to help : https://github.com/Tabrisrp/rich-contact-widget
 
 Rich Contact Widget requires PHP5 to work !
 
