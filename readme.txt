@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
 Tested up to: 3.5
-Stable tag: 1.2
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,6 +53,9 @@ Credits for translation :
 3. Rich Snippet result on search results page
 
 == Changelog ==
+
+= 1.2.1 =
+* Some HTML Fixes (thanks to Julien Maury @TweetPressFr)
 
 = 1.2 =
 * Undefined variable fix
