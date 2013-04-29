@@ -3,12 +3,12 @@ Contributors: tabrisrp
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74BBTNMWW38&lc=FR&item_name=R%c3%a9my%20Perona&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
-Tested up to: 3.5
-Stable tag: 1.2.1
+Tested up to: 3.5.1
+Stable tag: 1.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-This contact widget comes with enhanced markup for microdatas & microformats, so that search engines can use it in their search results.
+This contact widget for WordPress comes with enhanced markup for microdatas & microformats, so that search engines can use it in their search results.
 
 == Description ==
 
@@ -44,15 +44,12 @@ Credits for translation :
 = How to change the output using the filters ? =
 
 *   You can add or remove fields in the contact widget output and widget form with the `rc_widget_keys`, `rc_widget_form_ouput` and `rc_widget_output` filters.
-*   You can change the Company type of the schema.org itemtype to better fit your business with the `rc_widget_type` filter. Values could be Organization, LocalBusiness, etc.
-
-== Screenshots ==
-
-1. the widget configuration fields
-2. The widget display on twenty ten theme
-3. Rich Snippet result on search results page
+*   You can add more types of the schema.org itemtype to better fit your business with the `rc_schema_types` filter.
 
 == Changelog ==
+
+= 1.3 =
+* Replaced the radio buttons for company type by an extensive select menu containing all schema.org business types.
 
 = 1.2.1 =
 * Some HTML Fixes (thanks to Julien Maury @TweetPressFr)
