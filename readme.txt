@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
 Tested up to: 3.6
-Stable tag: 1.3.2
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -48,8 +48,12 @@ Credits for translation :
 
 == Changelog ==
 
+= 1.4 =
+* The plugin now creates a kml file and an associated sitemap file
+* If you have WordPress SEO by Yoast installed, it will add the sitemap to the sitemap index created by the plugin
+
 = 1.3.2 =
-* Added spanish translation by http://wordpress.org/support/profile/cris_gn
+Added spanish translation by http://wordpress.org/support/profile/cris_gn
 
 = 1.3.1 =
 * bugfix : added defaults values if width and height fields for the map are empty or the values are above 640
