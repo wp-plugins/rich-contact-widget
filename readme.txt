@@ -3,7 +3,7 @@ Contributors: tabrisrp
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74BBTNMWW38&lc=FR&item_name=R%c3%a9my%20Perona&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
-Tested up to: 3.6
+Tested up to: 3.7
 Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ A simple contact widget enhanced with microdatas & microformats tags for your lo
 
 == Description ==
 
-This contact widget comes with enhanced markup for microdatas & microformats, so that search engines can use it in their search results. They can help display contact information about your business or yourself below your website in search results, and even a map with your location, to improve your local SEO.
+This contact widget comes with for microdatas & microformats markup, so that search engines can use it in their search results. They can help display contact information about your business or yourself below your website in search results, and even a map with your location, to improve your local SEO.
 
 The telephone & email are linked so that visitors can click on it and make a call (through mobile or skype) or send a mail from their computer or their mobile devices.
 
