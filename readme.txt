@@ -30,6 +30,7 @@ Rich Contact Widget requires PHP5 to work !
 Credits for translation :
 
 * Slovak by <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
+* Michael Yunat, Ukranian (<a href="http://getvoip.com/blog">http://getvoip.com</a>)
 
 == Installation ==
 
