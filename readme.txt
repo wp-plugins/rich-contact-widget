@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=6V74B
 Tags: microdata, microformats, widget, contact, rich snippets, local seo, hcard, schema.org
 Requires at least: 3.2.1
 Tested up to: 4.2
-Stable tag: 1.4.3
+Stable tag: 1.4.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -47,6 +47,9 @@ Credits for translation :
 *   You can add more types of the schema.org itemtype to better fit your business with the `rc_schema_types` filter.
 
 == Changelog ==
+= 1.4.4 =
+* Bugfix : the coordinates in the KML file were in the wrong order
+
 = 1.4.3 =
 * Bugfix : the KML file didn't have the corresponding coordinates when an address was filled. Replaced custom code  with native wp_remote_get() function
 

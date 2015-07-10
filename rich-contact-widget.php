@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 1.4.3
+Version: 1.4.4
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -70,7 +70,7 @@ class RP_Geositemap {
                 <name>' . $data['name'] . '</name>
                 <description>' . $data['activity'] . '</description>
                 <Point>
-                  <coordinates>' . $coords['lat'] . ',' . $coords['lon'] . '</coordinates>
+                  <coordinates>' . $coords['lon'] . ',' . $coords['lat'] . '</coordinates>
                 </Point>
               </Placemark>
             </kml>';
