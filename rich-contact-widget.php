@@ -3,7 +3,7 @@
 Plugin Name: Rich Contact Widget
 Plugin URI: http://remyperona.fr/rich-contact-widget/
 Description: A simple contact widget enhanced with microdatas & microformats tags
-Version: 1.4
+Version: 1.4.5
 Author: Rémy Perona
 Author URI: http://remyperona.fr
 License: GPL2
@@ -70,7 +70,7 @@ class RP_Geositemap {
                 <name>' . $data['name'] . '</name>
                 <description>' . $data['activity'] . '</description>
                 <Point>
-                  <coordinates>' . $coords['lat'] . ',' . $coords['lon'] . '</coordinates>
+                  <coordinates>' . $coords['lon'] . ',' . $coords['lat'] . '</coordinates>
                 </Point>
               </Placemark>
             </kml>';
@@ -109,20 +109,15 @@ class RP_Geositemap {
         $base_url="http://maps.googleapis.com/maps/api/geocode/xml?";
         // ajouter &region=FR si ambiguité (lieu de la requete pris par défaut)
         $request_url = $base_url . "address=" . urlencode($address).'&sensor=false';
-        if( ini_get('allow_url_fopen') ) {
-            $xml = simplexml_load_file($request_url) or die("url not loading");
-        } else {
-            $curl = curl_init($request_url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            $data = curl_exec($request_url);
-            $xml = simplexml_load_string($data);
-        }
-        //print_r($xml);
+        $data = wp_remote_get( $request_url );
+        $xml = wp_remote_retrieve_body( $data );
+        $xml_content = simplexml_load_string( $xml );
+
         $coords['lat'] = $coords['lon'] = '';
-        $coords['status'] = $xml->status ;
+        $coords['status'] = $xml_content->status ;
         if($coords['status']=='OK') {
-            $coords['lat'] = $xml->result->geometry->location->lat ;
-            $coords['lon'] = $xml->result->geometry->location->lng ;
+            $coords['lat'] = $xml_content->result->geometry->location->lat ;
+            $coords['lon'] = $xml_content->result->geometry->location->lng ;
         }
         return $coords;
 	}
@@ -293,7 +288,7 @@ class RC_Widget extends WP_Widget {
 
 		$encoded_map_adress = str_replace( ' ', '+', $map_adress );
             
-    		$widget_output .= '<a href="http://mapof.it/'. $encoded_map_adress . '"><img src="http://maps.googleapis.com/maps/api/staticmap?center=' . $encoded_map_adress . '&amp;zoom=15&amp;size=' . $instance['map_width'] . 'x' . $instance['map_height'] . '&amp;sensor=false&amp;markers=' . $encoded_map_adress . '" alt="' . __('Map for', 'rich_contact-widget') . ' ' . $map_adress . '" width="' . $instance['map_width'] . '" height="' . $instance['map_height'] . '"></a>';
+    		$widget_output .= '<a href="https://google.com/maps/place/'. $encoded_map_adress . '/"><img src="http://maps.googleapis.com/maps/api/staticmap?center=' . $encoded_map_adress . '&amp;zoom=15&amp;size=' . $instance['map_width'] . 'x' . $instance['map_height'] . '&amp;sensor=false&amp;markers=' . $encoded_map_adress . '" alt="' . __('Map for', 'rich_contact-widget') . ' ' . $map_adress . '" width="' . $instance['map_width'] . '" height="' . $instance['map_height'] . '"></a>';
         }
 		$widget_output = apply_filters( 'rc_widget_output', $widget_output, $instance );
 		echo $widget_output;
@@ -350,7 +345,7 @@ class RC_Widget extends WP_Widget {
 		</p>';
 		$widget_form_output .= '<p>
 			<select name="' . $this->get_field_name( 'type' ) . '">
-			 <option value="">' . __( 'Choose a type', 'rich-contact-widget ') . '</option>';
+			 <option value="">' . __( 'Choose a type', 'rich-contact-widget') . '</option>';
 			 $types = apply_filters( 'rc_schema_types', array(
 	       'Person',
 	       'Corporation',
@@ -521,7 +516,7 @@ class RC_Widget extends WP_Widget {
 	       'SportsTeam'
 	       )
 	   );
-	   $widget_form_output .= $this->types_options( $types, -1, $instance['type'] );
+	   $widget_form_output .= $this->types_options( $types, -1, $type );
         $widget_form_output .= '</select>
 		</p>';
 		$widget_form_output .= '<p>
